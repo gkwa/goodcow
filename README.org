@@ -1,0 +1,7 @@
+* goodcow
+
+This is a description of my goodcow.
+
+** Usage
+
+To use my project, run this command: ./goodcow --verbose
