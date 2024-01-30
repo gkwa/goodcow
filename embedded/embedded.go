@@ -72,8 +72,11 @@ func RunEmbedded() error {
 
 	customRepoInfo := NewCustomizedRepositoryInfo(baseRepoInfo, additionalFields)
 
-	fmt.Println(baseRepoInfo.String())
-	fmt.Println(customRepoInfo.String())
+	// fmt.Println(baseRepoInfo.String())
+	fmt.Println(baseRepoInfo)
+
+	_ = customRepoInfo
+	// fmt.Println(customRepoInfo.String())
 
 	return nil
 }
