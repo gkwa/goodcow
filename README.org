@@ -15,7 +15,7 @@ Works as expected:
 ./goodcow test3
 #+end_example
 
-Fails:
+Fails (as expected):
 #+begin_example
 ./goodcow fail
 #+end_example
@@ -78,3 +78,15 @@ func (r RepositoryInfo) String() string {   // FIX IS HERE
 GOOD: func (r  RepositoryInfo) String() string {   
 BAD:  func (r *RepositoryInfo) String() string {   
 #+end_example
+
+*** test5
+
+Using *RepositoryInfo works too as long as you define baseRepoInfo to be of pointer type:
+
+This works:
+#+begin_example
+var baseRepoInfo *RepositoryInfo
+....
+func (r *RepositoryInfo) String() string {...
+#+end_example
+
