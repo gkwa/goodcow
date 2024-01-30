@@ -72,16 +72,13 @@ func RunEmbedded() error {
 
 	customRepoInfo := NewCustomizedRepositoryInfo(baseRepoInfo, additionalFields)
 
-	// fmt.Println(baseRepoInfo.String())
 	fmt.Println(baseRepoInfo)
-
-	_ = customRepoInfo
-	// fmt.Println(customRepoInfo.String())
+	fmt.Println(customRepoInfo)
 
 	return nil
 }
 
-func (r *RepositoryInfo) String() string {
+func (r RepositoryInfo) String() string {
 	b, err := json.MarshalIndent(r, "", "  ")
 	if err != nil {
 		return "Error marshalling JSON: " + err.Error()
@@ -89,7 +86,7 @@ func (r *RepositoryInfo) String() string {
 	return string(b)
 }
 
-func (r *CustomizedRepositoryInfo) String() string {
+func (r CustomizedRepositoryInfo) String() string {
 	b, err := json.MarshalIndent(r, "", "  ")
 	if err != nil {
 		return "Error marshalling JSON: " + err.Error()
