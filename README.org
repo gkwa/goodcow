@@ -81,7 +81,8 @@ BAD:  func (r *RepositoryInfo) String() string {
 
 *** test5
 
-Using *RepositoryInfo works too as long as you define baseRepoInfo to be of pointer type:
+Using *RepositoryInfo works too as long as you define baseRepoInfo to
+be of pointer type:
 
 This works:
 #+begin_example
@@ -90,3 +91,14 @@ var baseRepoInfo *RepositoryInfo
 func (r *RepositoryInfo) String() string {...
 #+end_example
 
+*** test6
+
+Using *RepositoryInfo works too as long as you define baseRepoInfo to
+be of pointer type:
+
+This works:
+#+begin_example
+baseRepoInfo := new(RepositoryInfo)
+....
+func (r *RepositoryInfo) String() string {...
+#+end_example
