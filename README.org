@@ -1,21 +1,16 @@
 * goodcow
-
-** purpose: learn when the String() emthod is being called
-
+** purpose: learn when the String() method is being called
 *** 
-
-#+begin_example
-make
-#+end_example
 
 Works as expected:
 #+begin_example
+make
 ./goodcow test1
 ./goodcow test2
 ./goodcow test3
 #+end_example
 
-Fails (as expected):
+Fails...and I see why now...finally.
 #+begin_example
 ./goodcow fail
 #+end_example
