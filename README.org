@@ -1,7 +1,80 @@
 * goodcow
 
-This is a description of my goodcow.
+** purpose: learn when the String() emthod is being called
 
-** Usage
+*** 
 
-To use my project, run this command: ./goodcow --verbose
+#+begin_example
+make
+#+end_example
+
+Works as expected:
+#+begin_example
+./goodcow test1
+./goodcow test2
+./goodcow test3
+#+end_example
+
+Fails:
+#+begin_example
+./goodcow fail
+#+end_example
+
+Reason:
+
+We created String() method for *RepositoryInfo, but not for
+RepositoryInfo which is a subgle mistake that sent me down goose
+chase.
+
+*** minutia
+
+**** So I mistakingly wrote this
+
+#+begin_example
+var baseRepoInfo RepositoryInfo
+
+err := json.Unmarshal([]byte(jsonData), &baseRepoInfo)
+if err != nil {
+	return fmt.Errorf("error unmarshalling JSON: %s", err)
+}
+
+fmt.Println(baseRepoInfo)
+
+...
+
+func (r *RepositoryInfo) String() string {
+	b, err := json.MarshalIndent(r, "", "  ")
+	if err != nil {
+		return fmt.Sprintf("error marshalling JSON: %v", err)
+	}
+	return string(b)
+}
+#+end_example
+
+**** When I meant to write this
+
+#+begin_example
+var baseRepoInfo RepositoryInfo
+
+err := json.Unmarshal([]byte(jsonData), &baseRepoInfo)
+if err != nil {
+	return fmt.Errorf("error unmarshalling JSON: %s", err)
+}
+
+fmt.Println(baseRepoInfo)
+
+...
+
+func (r RepositoryInfo) String() string {   // FIX IS HERE
+	b, err := json.MarshalIndent(r, "", "  ")
+	if err != nil {
+		return fmt.Sprintf("error marshalling JSON: %v", err)
+	}
+	return string(b)
+}
+#+end_example
+
+#+begin_example
+GOOD: func (r  RepositoryInfo) String() string {   
+BAD:  func (r *RepositoryInfo) String() string {   
+#+end_example
